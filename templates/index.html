@@ -1,0 +1,143 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sport Image Classifier</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        input[type="file"] {
+            background-color: #ffffff;
+            border-radius: 8px;
+            padding: 10px;
+            width: 100%;
+            margin-bottom: 20px;
+            border: none;
+        }
+
+        button {
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            color: #000;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .result {
+            margin-top: 30px;
+        }
+
+        .result h2 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 15px;
+        }
+
+        .result img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-button {
+            margin-top: 20px;
+        }
+
+        .back-button a {
+            display: inline-block;
+            text-decoration: none;
+            background-color: #ffffff33;
+            padding: 10px 24px;
+            border-radius: 30px;
+            color: #ffffff;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button a:hover {
+            background-color: #ffffff55;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Sport Image Classifier</h1>
+
+        <form method="POST" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if image %}
+        <div class="result">
+            <h2>Prediction: {{ result }}</h2>
+            <img src="{{ url_for('static', filename='uploads/' + image) }}" alt="Uploaded Image">
+        </div>
+        <div class="back-button">
+            <a href="{{ url_for('index') }}">← Back</a>
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
