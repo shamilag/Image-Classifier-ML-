@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.image import load_img, img_to_array
 
 # Configuration
 UPLOAD_FOLDER = 'static/uploads'
-MODEL_PATH = 'model/final_model.h5'
+MODEL_PATH = 'model/gamemodel.h5'
 IMG_SIZE = 224  # Assuming EfficientNetB0 size
 
 # Create app
